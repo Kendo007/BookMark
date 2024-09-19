@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="./styles/index.css" />
   </head>
   <body>
-    <header>
-      <h1>BookMark</h1>
-    </header>
-    <main>
-      <h2>You have not marked a book yet.</h2>
-    </main>
-    <footer>
-      <button id="add-bookmark" onclick="toggle()">Add Bookmark</button>
-    </footer>
+    <div id="body">
+      <header>
+        <h1>BookMark</h1>
+      </header>
+      <main>
+        <h2>You have not marked a book yet.</h2>
+      </main>
+      <footer>
+        <button id="add-bookmark" onclick="toggle()">Add Bookmark</button>
+      </footer>
+    </div>
     <section class="pop-up" id="menu">
       <form id="book-form">
         <div class="form-container">
@@ -37,7 +39,7 @@
             <span> Pages </span>
           </div>
           <div id="btm">
-            <button type="submit" class="submit-btn">Add to Library</button>
+            <button type="submit">Add to Library</button>
           </div>
           
           <div id="cls-btm">

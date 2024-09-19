@@ -1,3 +1,13 @@
+#menu.active {
+  visibility: visible;
+}
+#menu {
+  width: 50%;
+  position: fixed;
+  top: 5px;
+  left: 25%;
+  visibility: hidden;
+}
 form {
   overflow: hidden;
   border-radius: 15px;
@@ -45,6 +55,17 @@ span {
   transition: all 0.4s;
 }
 [type="submit"] {
+  border: 0;
+  background-color: var(--pale-pink);
+  color: var(--woody-brown);
+  padding: 10px 50px;
+  letter-spacing: 0.05em;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 17px;
+  outline: none;
+}
+.cls-btm {
   border: 0;
   background-color: var(--pale-pink);
   color: var(--woody-brown);
