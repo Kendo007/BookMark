@@ -11,11 +11,18 @@
     <div id="body">
       <header>
         <h1>BookMark</h1>
+        <img
+        src="./images/logo.svg"
+        alt=""
+        class="logo"
+      />
       </header>
       <main>
-        <div class="usage-tip">
-          <h2>You have not marked a book yet.</h2>
+        <div>
+          <h2 id="empty">You have not marked a book yet.</h2>
         </div>
+
+        <button onclick="UI.displayBooks()">Test</button>
       </main>
       <footer>
         <button id="add-bookmark" onclick="toggle()">Add Bookmark</button>

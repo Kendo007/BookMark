@@ -12,6 +12,7 @@ class Book {
         this.author = author;
         this.pagesRead = pagesRead;
         this.totalPages = totalPages;
+        this.status = "Reading";
     }
 }
 
@@ -54,5 +55,50 @@ class Storage {
         });
 
         localStorage.setItem("books", JSON.stringify(books));
+    }
+}
+
+class UI {
+    static displayBooks() {
+        // const books = Storage.getBooks();
+        let books = [{
+            title: 'Intelligent Design',
+            author: 'William Dembski',
+            pagesRead: 312,
+            totalPages: 516,
+            status: 'Reading'
+        }]
+
+        if (books.length !== 0) {
+            const h = document.getElementById("empty");
+            h.remove();
+        }
+        
+        books.forEach((book) => UI.displayBookMark(book));
+    }
+
+    static displayBookMark(book) {
+        const main = document.querySelector("main");
+
+        const bookMark = document.createElement("div");
+        bookMark.classList.add("book-card");
+
+        if (book.pagesRead === book.totalPages){
+            book.status = "Completed";
+        }
+
+        bookMark.innerHTML = `
+        <div class="description">
+            <h2>${book.title}</h2>
+            <h3>by ${book.author}</h3>
+            <p>Pages: ${book.pagesRead}/${book.totalPages}</p>
+        </div>
+        <div class="action-btns">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+        </div>
+        <div class="status">${book.status}</div>`;
+
+        main.appendChild(bookMark);
     }
 }
