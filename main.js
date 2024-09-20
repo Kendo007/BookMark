@@ -67,13 +67,20 @@ class UI {
             pagesRead: 312,
             totalPages: 516,
             status: 'Reading'
+        },
+        {
+            title: 'Intelligent',
+            author: 'William',
+            pagesRead: 516,
+            totalPages: 516,
+            status: 'Reading'
         }]
 
         if (books.length !== 0) {
             const h = document.getElementById("empty");
             h.remove();
         }
-        
+
         books.forEach((book) => UI.displayBookMark(book));
     }
 

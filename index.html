@@ -18,16 +18,17 @@
       />
       </header>
       <main>
-        <div>
-          <h2 id="empty">You have not marked a book yet.</h2>
+        <div id="empty" class="book-card">
+          <h2>Mark a book now !</h2>
+          <p>Click the "<strong>Add Bookmark</strong>" button to add a new book</p>
         </div>
-
-        <button onclick="UI.displayBooks()">Test</button>
       </main>
+      <button onclick="UI.displayBooks()">Test</button>
       <footer>
-        <button id="add-bookmark" onclick="toggle()">Add Bookmark</button>
+        <button id="add-bookmark" class="btm" onclick="toggle()">Add Bookmark</button>
       </footer>
     </div>
+
     <section class="pop-up" id="menu">
       <form id="book-form">
         <div class="form-container">
@@ -43,20 +44,26 @@
             <span> Author </span>
         </div>
           <div class="input-container">
-            <label for="pages"> </label>
-            <input type="number" name="pages" id="pages" min="1" required="" />
-            <span> Pages </span>
+            <label for="pagesRead"> </label>
+            <input type="number" name="pagesRead" id="pagesRead" min="1" required="" />
+            <span> Readed </span>
           </div>
-          <div id="btm">
+          <div class="input-container">
+            <label for="totalPages"> </label>
+            <input type="number" name="totalPages" id="totalPages" min="1" required="" />
+            <span> TotalPages </span>
+          </div>
+          <div class="btm">
             <button type="submit">Add to Library</button>
           </div>
           
-          <div id="cls-btm">
-            <button class="cls-btm" onclick="toggle()">Cancel</button>
+          <div>
+            <button class="btm" onclick="toggle()">Cancel</button>
           </div>
         </div>
       </form>
     </section>
+
     <script src="./main.js"></script>
   </body>
 </html>
