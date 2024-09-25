@@ -1,11 +1,44 @@
-function toggle() {
-    var blur = document.getElementById("body");
-    blur.classList.toggle("active");
+function toggle(task) {
+    const DialogBox = document.getElementById('menu');
+    console.log(DialogBox);
 
-    var popup = document.getElementById("menu");
-    popup.classList.toggle("active");
+    DialogBox.innerHTML = `
+        <form id="book-form" class="active" onsubmit="${task ? addBookEvent(event) : updateBookEvent(event)}">
+        <div class="form-container">
+          <h1 class="form-header">New Book</h1>
+          <div class="input-container">
+            <label for="title"></label>
+            <input type="text" name="title" id="title" required="" />
+            <span> Title </span>
+          </div>
+          <div class="input-container">
+            <label for="author"></label>
+            <input type="text" name="author" id="author" required="" />
+            <span> Author </span>
+        </div>
+          <div class="input-container">
+            <label for="pagesRead"> </label>
+            <input type="number" name="pagesRead" id="pagesRead" min="1" required="" />
+            <span> Readed </span>
+          </div>
+          <div class="input-container">
+            <label for="totalPages"> </label>
+            <input type="number" name="totalPages" id="totalPages" min="1" required="" />
+            <span> TotalPages </span>
+          </div>
+          <div>
+            <button type="submit" class="btm">Add to Library</button>
+          </div>
+          
+          <div>
+            <button class="btm" onclick="toggle()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    `;
 
-    // UI.displayBooks();
+    DialogBox.innerHTML = ``;
+
 }
 
 function addBookEvent(e) {
@@ -18,8 +51,16 @@ function addBookEvent(e) {
     }
     // const book = new Book(newBook);
     Storage.addBook(newBook);
-    toggle();
     UI.displayBooks();
+}
+
+function updateBookEvent(e) {
+    console.log(e);
+    Storage.getBooks().filter((book)=> {
+        if(book.title === e.title && book.author === e.author) {
+            
+        }
+    })
 }
 
 class Book {
@@ -117,7 +158,12 @@ class UI {
             <p>Pages: ${book.pagesRead}/${book.totalPages}</p>
         </div>
         <div class="action-btns">
-            <button class="edit">Edit</button>
+            <button class="edit" onclick="updateBookEvent({
+                title: '${book.title}',
+                author: '${book.author}',
+                pagesRead: ${book.pagesRead},
+                totalPages: ${book.totalPages}
+            })">Edit</button>
             <button class="delete">Delete</button>
         </div>
         <div class="status">${book.status}</div>`;
@@ -130,6 +176,8 @@ class UI {
             Storage.removeBook(e.parentElement.parentElement.querySelector("h2").textContent);
         }
     }
+    
+
 }
 
 document.querySelector("main").addEventListener("click", (e) => {
