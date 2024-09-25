@@ -30,7 +30,7 @@
     </div>
 
     <section class="pop-up" id="menu">
-      <form id="book-form">
+      <form id="book-form" onsubmit="addBookEvent(event)">
         <div class="form-container">
           <h1 class="form-header">New Book</h1>
           <div class="input-container">
@@ -53,8 +53,8 @@
             <input type="number" name="totalPages" id="totalPages" min="1" required="" />
             <span> TotalPages </span>
           </div>
-          <div class="btm">
-            <button type="submit">Add to Library</button>
+          <div>
+            <button type="submit" class="btm">Add to Library</button>
           </div>
           
           <div>
