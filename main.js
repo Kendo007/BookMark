@@ -1,22 +1,19 @@
 function toggle(task, title, author, pagesRead, totalPages) {
+    const body = document.getElementById("body");
     const DialogBox = document.getElementById('menu');
 
     if (task === "cancel") {
         DialogBox.classList.remove('active'); // Hide the dialog box
+        body.classList.remove("active");
         DialogBox.innerHTML = ``;
         return;
-    }
-    if(task === "edit") console.log('editing');
-    
-    if (task === 'edit' && !title && !author) {
+    } else if (task === 'edit' && !title && !author) {
         console.error("No book provided for editing");
         return;
-    }
-
-    // console.log(title, author, pagesRead, totalPages);
-    
+    }    
 
     DialogBox.classList.add('active'); // Show the dialog box
+    body.classList.add("active");
 
     DialogBox.innerHTML = `
         <form id="book-form" class="active" onsubmit="${task === 'add' ? 'addBookEvent(event)' : 'updateBookEvent(event)'}">
@@ -62,6 +59,12 @@ function addBookEvent(e) {
         pagesRead: e.target.pagesRead.value,
         totalPages: e.target.totalPages.value
     };
+    let p1 = newBook.pagesRead;
+    let p2 = newBook.totalPages;
+    if(parseInt(p1) == parseInt(p2)) {
+        console.error("Pages Read is greater than Total Pages.");
+        return "";
+    }
     Storage.addBook(newBook);
     UI.displayBooks();
     toggle('cancel'); // Close the form
@@ -90,6 +93,12 @@ class Storage {
     }
 
     static addBook(book) {
+        let p1 = parseInt(book.pagesRead);
+        let p2 = parseInt(book.totalPages);
+        if( p1 > p2 ) {
+            console.error("Pages Read is greater than total pages");
+            return;
+        }
         const books = Storage.getBooks();
         books.push(book);
         localStorage.setItem(Storage.LOCAL_STORAGE_KEY, JSON.stringify(books));
