@@ -152,16 +152,13 @@ class Storage {
 }
 
 class UI {
-    static displayBooks(books = []) {
+    static displayBooks() {
         const main = document.querySelector("main");
         main.innerHTML = ``;
 
         let library = Storage.getBooks();
         let userName = localStorage.getItem('loggedInUser');
-        books = library[userName] || [];
-        console.log(library);
-
-        if (books.length === 0) books = Storage.getBooks();
+        let books = library[userName] || [];
 
         if (books.length === 0) {
             main.innerHTML = `<div id="empty" class="book-card"><h2>Mark a book now!</h2><p>Click "Add Bookmark" to add a new book</p></div>`;
