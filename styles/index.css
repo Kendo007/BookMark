@@ -32,7 +32,7 @@ header {
   box-shadow: 0 1px 30px rgba(0, 0, 0, 0.5);
 }
 
-header > .logo {
+header>.logo {
   position: absolute;
   margin: 0 0 1em 11em;
   width: 20px;
@@ -54,7 +54,7 @@ main {
   grid-template-columns: repeat(3, 1fr);
 }
 
-main > .book-card {
+main>.book-card {
   width: 80%;
   min-height: 180px;
   max-height: fit-content;
@@ -71,7 +71,7 @@ main > .book-card {
   box-shadow: 0 3px 10px var(--opac-black);
 }
 
-main > #empty {
+main>#empty {
   place-items: center;
   align-content: center;
   gap: 10px;
@@ -82,7 +82,7 @@ main > #empty {
   top: 150px;
 }
 
-main > #empty > h2 {
+main>#empty>h2 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   padding-bottom: 15px;
   width: 100%;
@@ -103,7 +103,7 @@ main > #empty > h2 {
   box-shadow: 0 3px 10px var(--opac-black);
 }
 
-.book-card > .status {
+.book-card>.status {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -113,27 +113,29 @@ main > #empty > h2 {
   border-top: 1px solid var(--opac-black);
 }
 
-.book-card > div {
+.book-card>div {
   display: flex;
   align-items: center;
 }
 
-.book-card > .description {
+.book-card>.description {
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
   position: relative;
 }
 
-.book-card > .description > h2 {
+.book-card>.description>h2 {
   text-transform: capitalize;
   width: 80%;
 }
-.book-card > .description > h3 {
+
+.book-card>.description>h3 {
   font-size: 14px;
   margin: 5px 0 10px 0;
 }
-.book-card > .description > p {
+
+.book-card>.description>p {
   position: absolute;
   right: 0;
   margin: 0 2px 50px 0;
@@ -141,7 +143,7 @@ main > #empty > h2 {
   font-size: 12px;
 }
 
-.book-card > .action-btns > * {
+.book-card>.action-btns>* {
   border: 0;
   letter-spacing: 0.05em;
   border-radius: 5px;
@@ -153,15 +155,15 @@ main > #empty > h2 {
   text-shadow: 0 5px 10px var(--opac-black);
 }
 
-.book-card > .action-btns > .edit {
+.book-card>.action-btns>.edit {
   background-color: var(--greyish-blue);
 }
 
-.book-card > .action-btns > .delete {
+.book-card>.action-btns>.delete {
   background-color: var(--red);
 }
 
-.book-card > .action-btns {
+.book-card>.action-btns {
   height: 70px;
   border-top: 1px solid var(--opac-black);
   gap: 15px;
@@ -170,9 +172,11 @@ main > #empty > h2 {
 #body.active {
   filter: blur(5px);
 }
+
 #menu.active {
   visibility: visible;
 }
+
 #menu {
   width: 50%;
   position: fixed;
@@ -193,6 +197,7 @@ main > #empty > h2 {
   cursor: pointer;
   -webkit-box-shadow: 0 3px 10px var(--opac-black);
   box-shadow: 0 3px 10px var(--opac-black);
+  border-radius: 100%;
 }
 
 form {
@@ -203,6 +208,7 @@ form {
   place-items: center;
   box-shadow: 5px 5px 5px var(--opac-black);
 }
+
 .form-container {
   gap: 35px;
   width: 100%;
@@ -215,12 +221,14 @@ form {
   gap: 40px;
   padding: 10px;
 }
+
 .form-header {
   letter-spacing: 0.07em;
   margin: 20px 0 20px 0;
   font-size: 30px;
   color: white;
 }
+
 input {
   display: block;
   border-radius: 4px;
@@ -232,15 +240,18 @@ input {
   transition: all 0.5s ease-in;
   color: var(--opac-white);
 }
+
 input::placeholder {
   content: none;
 }
+
 span {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: 15px;
   transition: all 0.4s;
 }
+
 [type="submit"] {
   border: 0;
   background-color: var(--pale-pink);
@@ -251,6 +262,7 @@ span {
   font-size: 17px;
   outline: none;
 }
+
 .btm {
   border: 0;
   background-color: var(--pale-pink);
@@ -261,19 +273,23 @@ span {
   font-size: 17px;
   outline: none;
 }
+
 .btm-text {
   margin-top: 15px;
   font-size: 14px;
 }
+
 .input-container {
   position: relative;
 }
-.form-container > .checkbox {
+
+.form-container>.checkbox {
   height: 50px;
   width: 55%;
   border-bottom: 1px solid rgb(0, 0, 0, 0.4);
 }
-.input-container > span {
+
+.input-container>span {
   position: absolute;
   left: 0;
   top: 0;
@@ -283,8 +299,8 @@ span {
 
 /**/
 
-input:focus ~ span,
-input:valid ~ span {
+input:focus~span,
+input:valid~span {
   font-size: 10px;
   transform: translateX(4px) translateY(-7px);
   font-size: 0.8em;
@@ -293,6 +309,7 @@ input:valid ~ span {
   color: var(--woody-brown);
   border-radius: 2px;
 }
+
 input:focus,
 input:focus-visible {
   border: 1px solid var(--pale-pink);
@@ -300,12 +317,123 @@ input:focus-visible {
   box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
   outline: none;
 }
+
 input:valid {
   border: 1px solid var(--pale-pink);
 }
+
 .pop-up {
   display: grid;
   place-items: center;
   height: 100vh;
   width: 100%;
+}
+
+@media (min-width: 25em) {
+
+  /*  For Phones  */
+  main {
+    grid-template-columns: repeat(1, 1fr);
+    padding-top: 90px;
+  }
+
+  header {
+    height: 55px;
+  }
+
+  #menu {
+    height: calc(100vh - 55px);
+    width: 100%;
+  }
+
+  .toggle-btn-cover {
+    display: block;
+  }
+
+  #menuToggle>input,
+  #menuToggle>.toggle {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0.95rem;
+  }
+
+  #menuToggle>.toggle {
+    background: unset;
+    box-shadow: unset;
+    bottom: unset;
+  }
+
+  form {
+    width: 80%;
+  }
+
+  main>.usage-tip {
+    width: 80%;
+    height: 200px;
+    align-content: space-around;
+  }
+}
+
+@media (min-width: 37.5em) {
+
+  /*  For Tablets  */
+  main {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: max-content;
+    padding-top: 90px;
+  }
+
+  header {
+    height: 70px;
+    padding-left: 20px;
+  }
+
+  #menu {
+    height: calc(100vh - 55px);
+    width: 500px;
+  }
+
+  .toggle-btn-cover {
+    display: none;
+  }
+
+  #menuToggle>input,
+  #menuToggle>.toggle {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0.95rem;
+  }
+
+  #menuToggle>.toggle {
+    background: unset;
+    box-shadow: unset;
+    bottom: unset;
+  }
+
+  form {
+    width: 70%;
+  }
+
+  main>.usage-tip {
+    width: 40%;
+    height: 200px;
+    align-content: space-around;
+  }
+}
+
+@media (min-width: 56.25em) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  form {
+    width: 60%;
+    transform: scale(0.9);
+  }
+
+  #menu {
+    width: 600px;
+  }
 }
