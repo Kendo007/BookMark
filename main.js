@@ -50,7 +50,6 @@ function toggle(task, title, author, pagesRead, totalPages) {
     `;
 }
 
-
 function addBookEvent(e) {
     e.preventDefault();
     const newBook = {
@@ -113,7 +112,7 @@ class Storage {
         }
         let books = Storage.getBooks();
         books = books.map((book) =>
-            book.title === updatedBook.title && book.author === updatedBook.author ? updatedBook : book
+            book.title === updatedBook.title ? updatedBook : book
         );
         localStorage.setItem(Storage.LOCAL_STORAGE_KEY, JSON.stringify(books));
     }

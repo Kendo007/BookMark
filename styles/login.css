@@ -1,0 +1,14 @@
+main {
+    display: flex;
+}
+
+.pop-up {
+    width: 30%;
+    margin: auto;
+    height: min-content;
+}
+
+.form-container {
+    position: relative;
+    top: 100px;
+}
