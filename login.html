@@ -14,8 +14,8 @@
       </header>
 
       <main>
-        <div class="pop-up" style="">
-          <form class="form-container" action="login_handler.php" method="POST" style="margin: auto;">
+        <div class="pop-up">
+          <form class="form-container" onsubmit="loginUser(event)">
             <div class="form-header">Login</div>
             
             <div class="input-container">
@@ -35,5 +35,7 @@
         </div>
       </main>
     </div>
+
+    <script src="./login.js"></script>
   </body>
 </html>

@@ -1,3 +1,7 @@
+if (!localStorage.getItem('books-entries')) {
+    localStorage.setItem('books-entries', JSON.stringify({"testuser": []}));
+}
+
 function toggle(task, title, author, pagesRead, totalPages) {
     const body = document.getElementById("body");
     const DialogBox = document.getElementById('menu');
@@ -10,7 +14,7 @@ function toggle(task, title, author, pagesRead, totalPages) {
     } else if (task === 'edit' && !title && !author) {
         console.error("No book provided for editing");
         return;
-    }    
+    }
 
     DialogBox.classList.add('active'); // Show the dialog box
     body.classList.add("active");
@@ -31,12 +35,12 @@ function toggle(task, title, author, pagesRead, totalPages) {
           </div>
           <div class="input-container">
             <label for="pagesRead"></label>
-            <input type="number" name="pagesRead" id="pagesRead" value="${pagesRead || "" }" min="1" required />
+            <input type="number" name="pagesRead" id="pagesRead" value="${pagesRead || ""}" min="1" required />
             <span>Pages Read</span>
           </div>
           <div class="input-container">
             <label for="totalPages"></label>
-            <input type="number" name="totalPages" id="totalPages" value="${totalPages || "" }" min="1" required />
+            <input type="number" name="totalPages" id="totalPages" value="${totalPages || ""}" min="1" required />
             <span>Total Pages</span>
           </div>
           <div>
@@ -60,7 +64,7 @@ function addBookEvent(e) {
     };
     let p1 = newBook.pagesRead;
     let p2 = newBook.totalPages;
-    if(parseInt(p1) == parseInt(p2)) {
+    if (parseInt(p1) == parseInt(p2)) {
         console.error("Pages Read is greater than Total Pages.");
         return "";
     }
@@ -70,7 +74,7 @@ function addBookEvent(e) {
 }
 
 function updateBookEvent(e) {
-    
+
     e.preventDefault();
     const updatedBook = {
         title: e.target.title.value,
@@ -88,38 +92,60 @@ class Storage {
     static LOCAL_STORAGE_KEY = "books-entries";
 
     static getBooks() {
-        return JSON.parse(localStorage.getItem(Storage.LOCAL_STORAGE_KEY)) || [];
+        return JSON.parse(localStorage.getItem(Storage.LOCAL_STORAGE_KEY)) || {};
+    }
+
+    static addUser(userName) {
+        let books = Storage.getBooks();
+        if (!books[userName]) {
+            books[userName] = [];
+            localStorage.setItem(Storage.LOCAL_STORAGE_KEY, JSON.stringify(books));
+        }
     }
 
     static addBook(book) {
+        let userName = localStorage.getItem('loggedInUser');
         let p1 = parseInt(book.pagesRead);
         let p2 = parseInt(book.totalPages);
-        if( p1 > p2 ) {
+
+        if (p1 > p2) {
             console.error("Pages Read is greater than total pages");
             return;
         }
         const books = Storage.getBooks();
-        books.push(book);
+
+        if (!books[userName]) {
+            books[userName] = [];
+        }
+
+        books[userName].push(book);
         localStorage.setItem(Storage.LOCAL_STORAGE_KEY, JSON.stringify(books));
     }
 
     static updateBook(updatedBook) {
+        let userName = localStorage.getItem('loggedInUser');
         let p1 = parseInt(updatedBook.pagesRead);
         let p2 = parseInt(updatedBook.totalPages);
-        if( p1 > p2 ) {
+
+        if (p1 > p2) {
             console.error("Pages Read is greater than total pages");
             return;
         }
+
         let books = Storage.getBooks();
-        books = books.map((book) =>
+
+        books[userName] = books[userName].map((book) =>
             book.title === updatedBook.title ? updatedBook : book
         );
+
         localStorage.setItem(Storage.LOCAL_STORAGE_KEY, JSON.stringify(books));
     }
 
     static removeBook(bookTitle) {
+        let userName = localStorage.getItem('loggedInUser');
         let books = Storage.getBooks();
-        books = books.filter(book => book.title !== bookTitle);
+
+        books[userName] = books[userName].filter(book => book.title !== bookTitle);
         localStorage.setItem(Storage.LOCAL_STORAGE_KEY, JSON.stringify(books));
         UI.displayBooks();
     }
@@ -129,6 +155,12 @@ class UI {
     static displayBooks(books = []) {
         const main = document.querySelector("main");
         main.innerHTML = ``;
+
+        let library = Storage.getBooks();
+        let userName = localStorage.getItem('loggedInUser');
+        books = library[userName] || [];
+        console.log(library);
+
         if (books.length === 0) books = Storage.getBooks();
 
         if (books.length === 0) {
@@ -161,5 +193,29 @@ class UI {
     }
 }
 
+// Check if user is logged in
+document.addEventListener('DOMContentLoaded', () => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+
+    if (loggedInUser) {
+        // Show logout button if the user is logged in
+        document.getElementById('logout-btn').style.display = 'block';
+    } else {
+        // If no user is logged in, redirect to login page
+        window.location.href = 'login.html';
+    }
+});
+
+// Logout function
+function logout() {
+    // Remove the logged-in user from localStorage
+    localStorage.removeItem('loggedInUser');
+
+    // Redirect to login page
+    window.location.href = 'login.html';
+}
+
+
 // Initial load
 UI.displayBooks();
+
