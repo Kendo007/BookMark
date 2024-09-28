@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('logout-btn').style.display = 'block';
     } else {
         // If no user is logged in, redirect to login page
-        window.location.href = 'login.html';
+        window.location.href = '../pages/login.html';
     }
 });
 
@@ -209,7 +209,7 @@ function logout() {
     localStorage.removeItem('loggedInUser');
 
     // Redirect to login page
-    window.location.href = 'login.html';
+    window.location.href = '../pages/login.html';
 }
 
 

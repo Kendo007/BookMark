@@ -6,7 +6,7 @@ function addUser(event) {
 
     let users = JSON.parse(localStorage.getItem('users')) || [];
 
-    const userExists = users.some(user => user.username === username);
+    const userExists = users.some((u) => (u.username === username));
 
     if (userExists) {
         alert('Username is already taken!');
@@ -18,7 +18,7 @@ function addUser(event) {
         alert('Sign-Up successful!');
 
         // Redirect to index.html or any other page
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
     }
 }
 

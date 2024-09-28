@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (loggedInUser) {
         // If user is already logged in, redirect to the main page
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
     }
 });
 
@@ -33,7 +33,7 @@ function loginUser(e) {
 
         // Redirect to the home page (or another page) after successful login
         alert("Login successful!");
-        window.location.href = "./index.html";
+        window.location.href = "../index.html";
     } else {
         alert("Invalid username or password");
     }

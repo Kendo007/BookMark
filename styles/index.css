@@ -90,6 +90,19 @@ main > #empty > h2 {
   font-size: 23px;
 }
 
+#logout-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: var(--red);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-box-shadow: 0 3px 10px var(--opac-black);
+  box-shadow: 0 3px 10px var(--opac-black);
+}
+
 .book-card > .status {
   position: absolute;
   bottom: 0;
